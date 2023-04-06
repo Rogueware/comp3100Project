@@ -1,7 +1,9 @@
 import java.net.*;  
 import java.io.*;  
 
+
 class MyClient{  
+//Function for finding index of whitespace
 public static int ordinalIndexOf(String str, String substr, int n) {
     int pos = -1;
     do {
@@ -14,7 +16,8 @@ Socket s=new Socket("localhost",50000);
 BufferedReader din=new BufferedReader(new InputStreamReader(s.getInputStream()));  
 DataOutputStream dout=new DataOutputStream(s.getOutputStream());  
 BufferedReader br=new BufferedReader(new InputStreamReader(System.in));  
-  
+ 
+//Strings for holding commands and details of largest server
 String str="",str2="",ok="OK\n",auth="AUTH rogue\n",redy="REDY\n",helo="HELO\n";
 String largestname="";
 int largestcore=0;
@@ -23,6 +26,7 @@ int numberoflargestserver=0;
 int jobID=0;
 String hold;
 
+//Completing initial connection steps like HELO and AUTH
 dout.write((helo).getBytes());  
 dout.flush();
 str2=din.readLine();  
@@ -38,8 +42,10 @@ dout.flush();
 str2=din.readLine();  
 System.out.println("Server says: "+str2);
 
+//Saving JobID
 jobID = Integer.valueOf(str2.substring(ordinalIndexOf(str2," ",1)+1,ordinalIndexOf(str2," ",2)));
 //hold = (str2.substring(ordinalIndexOf(str2," ",1)+1,ordinalIndexOf(str2," ",2)));
+
 
 dout.write(("GETS All\n").getBytes());  
 dout.flush();
