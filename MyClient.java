@@ -46,12 +46,13 @@ System.out.println("Server says: "+str2);
 jobID = Integer.valueOf(str2.substring(ordinalIndexOf(str2," ",1)+1,ordinalIndexOf(str2," ",2)));
 //hold = (str2.substring(ordinalIndexOf(str2," ",1)+1,ordinalIndexOf(str2," ",2)));
 
-
+//Retrive server records
 dout.write(("GETS All\n").getBytes());  
 dout.flush();
 str2=din.readLine();  
 System.out.println("Server says: "+str2);  
 
+//Compare and save largest
 while(!str2.equals(".")){
     dout.write((ok).getBytes());  
     dout.flush();
@@ -66,6 +67,7 @@ while(!str2.equals(".")){
 
 //System.out.println(jobID+","+largestname+","+numberoflargestserver+","+largestcore);
 
+//Manual command input
 while(!str.equals("stop")){  
 str=br.readLine();
 dout.write((str+"\n").getBytes());  
