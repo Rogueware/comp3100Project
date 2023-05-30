@@ -32,20 +32,24 @@ public class MyClient {
        //This while loop continues to run until there are no more jobs
         while(!reply.equals("NONE")){
             if(reply.contains("JOBN")) { 
+                //If there is a job split the core count, memory and disk space into the array and search for servers avaliable that exactly
+                //match the requirements of the job
+                String temp = reply;
+                String arrOfStr[] = temp.split(" ",-1);
+                mess = "GETS Avail "+ arrOfStr[4] + " " + arrOfStr[5] + " " + arrOfStr[6] +"\n";
+                dout.write(mess.getBytes());
+                dout.flush();
+                reply = din.readLine();
+                System.out.println(reply);
+
+                temp = reply;
+                count = temp.split(" ", -1);
+                System.out.println(count[1]);
                 
-               String temp = reply;
-               String arrOfStr[] = temp.split(" ",-1);
-               mess = "GETS Avail "+ arrOfStr[4] + " " + arrOfStr[5] + " " + arrOfStr[6] +"\n";
-               System.out.println(mess);
-               dout.write(mess.getBytes());
-               dout.flush();
-               reply = din.readLine();
-
-               temp = reply;
-               count = temp.split(" ", -1);
-
-                if(Integer.parseInt(count[1])!=0) { // no server readily available
+                //if servers are avaliable write data of servers to count
+                if(Integer.parseInt(count[1])!=0) { 
                     norecs = Integer.parseInt(count[1]);
+                    //System.out.println(norecs);
                     count = new String[norecs];
 
                     dout.write(ok.getBytes());
@@ -59,8 +63,10 @@ public class MyClient {
                     dout.flush();
                     reply = din.readLine();
 
+                    //take the first server and split the string into substrings
                     String firstServer[] = count[0].split(" ", -1);
                     
+                    //schedule the job with the server
                     jobID = Integer.parseInt(arrOfStr[2]);
                     mess = "SCHD" + " " + jobID +" " + firstServer[0] + " " + firstServer[1] + "\n";
                     dout.write(mess.getBytes());
@@ -68,7 +74,8 @@ public class MyClient {
                     reply = din.readLine();
                 }    
 
-               else{
+                //if no servers available get first capable server and schedules it with that server
+                else{
                     dout.write(ok.getBytes());
                     dout.flush();
                     reply = din.readLine();
@@ -117,12 +124,5 @@ public class MyClient {
        dout.close();
        socket.close();       
     }   
-
-// public String WriteFlushRead(String mess, doutputStream out, BufferedReader in) {
-//     out.write(mess.getBytes());
-//     out.flush();
-//     return in.readLine();
-// }
-
 }
         
