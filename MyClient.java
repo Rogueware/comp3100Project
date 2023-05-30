@@ -32,7 +32,7 @@ public class MyClient {
        //This while loop continues to run until there are no more jobs
         while(!reply.equals("NONE")){
             if(reply.contains("JOBN")) { 
-                //If there is a job split the core count, memory and disk space into the array and search for servers avaliable that exactly
+                //If there is a job split the core count, memory and disk space into the array and search for servers avaliable that exactly 
                 //match the requirements of the job
                 String temp = reply;
                 String arrOfStr[] = temp.split(" ",-1);
@@ -46,7 +46,7 @@ public class MyClient {
                 count = temp.split(" ", -1);
                 System.out.println(count[1]);
                 
-                //if servers are avaliable write data of servers to count
+                //if servers are avaliable write data of servers to count 
                 if(Integer.parseInt(count[1])!=0) { 
                     norecs = Integer.parseInt(count[1]);
                     //System.out.println(norecs);
@@ -63,7 +63,7 @@ public class MyClient {
                     dout.flush();
                     reply = din.readLine();
 
-                    //take the first server and split the string into substrings
+                    //take the first server and split the string into substrings 
                     String firstServer[] = count[0].split(" ", -1);
                     
                     //schedule the job with the server
