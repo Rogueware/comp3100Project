@@ -17,6 +17,7 @@ public class MyClient {
        String mess = "";
        String str="",str2="",ok="OK\n",auth="AUTH rogue\n",redy="REDY\n",helo="HELO\n";
 
+       //handshake
        dout.write(helo.getBytes());  
        dout.flush();
        str2=din.readLine();  
