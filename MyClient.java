@@ -46,6 +46,7 @@ public class MyClient {
                 temp = reply;
                 count = temp.split(" ", -1);
                 System.out.println(count[1]);
+                //DATA 3 123
                 
                 //if servers are avaliable write data of servers to count 
                 if(Integer.parseInt(count[1])!=0) { 
@@ -69,7 +70,7 @@ public class MyClient {
                     
                     //schedule the job with the server
                     jobID = Integer.parseInt(arrOfStr[2]);
-                    mess = "SCHD" + " " + jobID +" " + firstServer[0] + " " + firstServer[1] + "\n";
+                    mess = "SCHD " + jobID + " " + firstServer[0] + " " + firstServer[1] + "\n";
                     dout.write(mess.getBytes());
                     dout.flush();
                     reply = din.readLine();
@@ -81,7 +82,7 @@ public class MyClient {
                     dout.flush();
                     reply = din.readLine();
 
-                    mess = "GETS Capable "+ arrOfStr[4] + " " + arrOfStr[5] + " " + arrOfStr[6] +"\n";
+                    mess = "GETS Capable " + arrOfStr[4] + " " + arrOfStr[5] + " " + arrOfStr[6] +"\n";
                     dout.write(mess.getBytes());
                     dout.flush();
                     reply = din.readLine();
@@ -106,7 +107,7 @@ public class MyClient {
                     String firstServer[] = count[0].split(" ", -1);
                     
                     jobID = Integer.parseInt(arrOfStr[2]);
-                    mess = "SCHD" + " " + jobID +" " + firstServer[0] + " " + firstServer[1] + "\n";
+                    mess = "SCHD " + jobID + " " + firstServer[0] + " " + firstServer[1] + "\n";
                     dout.write(mess.getBytes());
                     dout.flush();
                     reply = din.readLine();
